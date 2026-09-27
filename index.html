@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sago Store</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner container">
+    <div class="brand">Sago<span>.</span></div>
+    <button class="cart-btn" id="cartBtn" style="display:none">
+      🛒 কার্ট <span class="count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<main class="grid-wrap container">
+  <h1 class="section-title">সব প্রোডাক্ট</h1>
+  <div class="grid" id="grid"></div>
+  <div class="empty-state" id="emptyState" style="display:none">
+    এখনো কোনো প্রোডাক্ট যোগ করা হয়নি।
+  </div>
+</main>
+
+<!-- Product detail sheet -->
+<div class="overlay" id="productOverlay">
+  <div class="sheet">
+    <div class="sheet-head">
+      <h2>প্রোডাক্ট</h2>
+      <button class="icon-btn" id="closeProductSheet">✕</button>
+    </div>
+    <div class="sheet-body" id="pdSheetBody"></div>
+  </div>
+</div>
+
+<!-- Cart sheet -->
+<div class="overlay" id="cartOverlay">
+  <div class="sheet">
+    <div class="sheet-head">
+      <h2>আপনার কার্ট</h2>
+      <button class="icon-btn" id="closeCartSheet">✕</button>
+    </div>
+    <div class="sheet-body">
+      <div id="cartSheetBody"></div>
+      <button class="btn-primary" id="goCheckoutBtn" style="display:none">অর্ডার করতে যান</button>
+    </div>
+  </div>
+</div>
+
+<!-- Checkout sheet -->
+<div class="overlay" id="checkoutOverlay">
+  <div class="sheet">
+    <div class="sheet-head">
+      <h2>অর্ডার তথ্য</h2>
+      <button class="icon-btn" id="closeCheckoutSheet">✕</button>
+    </div>
+    <div class="sheet-body">
+      <form id="orderForm">
+        <div class="field">
+          <label>নাম</label>
+          <input type="text" id="coName" required>
+        </div>
+        <div class="field">
+          <label>ফোন নম্বর</label>
+          <input type="tel" id="coPhone" required>
+        </div>
+        <div class="field">
+          <label>ঠিকানা</label>
+          <textarea id="coAddress" required></textarea>
+        </div>
+        <div class="field">
+          <label>বিশেষ কোনো নির্দেশনা <span class="opt">(ঐচ্ছিক)</span></label>
+          <textarea id="coNote"></textarea>
+        </div>
+        <div class="cart-total-row">
+          <span>সর্বমোট</span>
+          <span id="checkoutTotal">৳0</span>
+        </div>
+        <button class="btn-primary" id="submitOrderBtn" type="submit">অর্ডার সাবমিট করুন</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Success -->
+<div class="overlay" id="successOverlay">
+  <div class="sheet" style="max-width:420px;">
+    <div class="sheet-body" style="text-align:center; padding:40px 24px;">
+      <div style="font-size:40px; margin-bottom:12px;">✅</div>
+      <h2 style="margin:0 0 10px;">অর্ডার সম্পন্ন হয়েছে</h2>
+      <p style="color:var(--muted); margin-bottom:24px;">আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।</p>
+      <button class="btn-secondary" id="closeSuccess">ঠিক আছে</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module" src="js/store.js"></script>
+</body>
+</html>

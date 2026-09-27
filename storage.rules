@@ -1,0 +1,21 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isSuperAdmin() {
+      return request.auth != null && request.auth.token.email == "gorainsondip@gmail.com";
+    }
+    function isAdmin() {
+      return request.auth != null && (
+        isSuperAdmin() ||
+        firestore.exists(/databases/(default)/documents/admins/$(request.auth.token.email))
+      );
+    }
+
+    // সবাই প্রোডাক্টের ছবি দেখতে পারবে, শুধু অ্যাডমিনরা আপলোড/ডিলিট করতে পারবে
+    match /products/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}
